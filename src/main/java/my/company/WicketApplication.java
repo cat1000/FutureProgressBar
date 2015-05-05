@@ -1,14 +1,14 @@
 package my.company;
 
 import my.company.pages.TestPage;
+
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.springframework.stereotype.Component;
 
 /**
- * Application object for your web application.
- * If you want to run this application without deploying, run the Start class.
+ * Application object for your web application. If you want to run this application without deploying, run the Start class.
  * 
  * @see my.company.Start#main(String[])
  */
@@ -33,7 +33,6 @@ public class WicketApplication extends WebApplication
 	{
 		getComponentInstantiationListeners().add(new SpringComponentInjector(this));
 		super.init();
-        this.getMarkupSettings().setStripWicketTags(true);
 
 		mountPage("/start", TestPage.class);
 

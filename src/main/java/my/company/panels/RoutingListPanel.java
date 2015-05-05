@@ -1,16 +1,17 @@
 package my.company.panels;
 
 
-import com.google.common.collect.Lists;
+import java.util.List;
+
 import my.company.domain.Location;
 import my.company.domain.Route;
+
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.markup.html.list.PropertyListView;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
-
-import java.util.List;
 
 
 public class RoutingListPanel extends Panel {
@@ -21,18 +22,21 @@ public class RoutingListPanel extends Panel {
         super(id);
 
 
-        ListView<Route> routeListView = new ListView<Route>("routes", routingModel.getObject()) {
+        ListView<Route> routeListView = new PropertyListView<Route>("routes", routingModel) {
 
-            @Override
+			private static final long serialVersionUID = 1L;
+
+			@Override
             protected void populateItem(ListItem<Route> listItem) {
-                final IModel<Route> routeModel = listItem.getModel();
-                listItem.add(new Label("routeName", routeModel.getObject().getName()));
-                listItem.add(new ListView<Location>("routingItems", routeModel.getObject().getLocations()) {
+                
+                listItem.add(new Label("name"));
+                listItem.add(new PropertyListView<Location>("locations") {
 
-                    @Override
+					private static final long serialVersionUID = 1L;
+
+					@Override
                     protected void populateItem(ListItem<Location> listItem) {
-                        final IModel<Location> locationModel = listItem.getModel();
-                        listItem.add(new Label("locationName", locationModel));
+                        listItem.add(new Label("name"));
                         listItem.setOutputMarkupId(true);
 
                     }
