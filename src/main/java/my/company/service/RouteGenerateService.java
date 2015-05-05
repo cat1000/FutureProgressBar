@@ -39,12 +39,12 @@ public class RouteGenerateService {
             public List<Route> call() {
                 System.out.println("Long running task started");
                 int i = 1;
-                while  (i <= 10) {
-                    progress = progress + 10;
+                while  (i <= 5) {
+                    progress += 20;
                     System.out.println("progress " + progress);
 
                     try {
-                        Thread.sleep(2000);     // sleep one second (in the real program I would make a thread that tries to find best route and then stops after 10 sec).
+                        Thread.sleep(1000);     // sleep one second (in the real program I would make a thread that tries to find best route and then stops after 10 sec).
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
